@@ -59,6 +59,19 @@
             }
         },
         {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "git://github.com/mwhudson/testing-openstack",
+                        "revision": "arm64-trusty",
+                        "testdef": "tempest.yaml"
+                    }
+                ],
+                "timeout": 7200
+            }
+        },
+        {
             "command": "submit_results",
             "parameters": {
                 "server": "http://validation.linaro.org/RPC2/",

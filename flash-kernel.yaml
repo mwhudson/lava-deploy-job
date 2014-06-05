@@ -17,11 +17,12 @@ run:
   steps:
     - "set -x"
     - "set +e"
-    - "mnt /dev/sda1 /mnt"
+    - "mount /dev/sda1 /mnt"
     - "mv /mnt/etc/resolv.conf /mnt/etc/resolv.conf.bak"
     - "cp /etc/resolv.conf /mnt/etc/resolv.conf"
     - "mv /mnt/etc/resolv.conf.bak /mnt/etc/resolv.conf"
+    - "mount -t proc procfs /mnt/proc"
     - "cp fk.sh /mnt/fk.sh"
-    - "chroot /mnt bash -x t.sh"
+    - "chroot /mnt bash -x /fk.sh"
 
     
