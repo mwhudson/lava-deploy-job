@@ -45,24 +45,6 @@
             }
         },
         {
-            "command": "boot_linaro_image",
-            "parameters": {
-                "test_image_prompt": "root@sid"
-            }
-        },
-        {
-            "command": "lava_test_shell",
-            "parameters": {
-                "testdef_repos": [
-                    {
-                        "git-repo": "http://github.com/mwhudson/lava-deploy-job",
-                        "testdef": "flash-kernel.yaml"
-                    }
-                ],
-                "timeout": 18000
-            }
-        },
-        {
             "command": "deploy_linaro_kernel",
             "parameters": {
                 "dtb": "http://images-internal/mustang/mustang.dtb_1.11",
