@@ -34,6 +34,15 @@
             }
         },
         {
+            "command": "boot_linaro_image",
+            "parameters": {
+                "boot_cmds": ["setenv script_addr_r 0x4004000000",
+                              "scsi init",
+                              "ext4load scsi 0 ${script_addr_r} boot/boot.scr",
+                              "source ${script_addr_r}"]
+            }
+        },
+        {
             "command": "submit_results",
             "parameters": {
                 "server": "http://validation.linaro.org/RPC2/",
