@@ -16,9 +16,13 @@ metadata:
 run:
   steps:
     - "set -x"
+    - "set +e"
     - "#mkdir build"
     - "#mount -t tmpfs -o size=2G tmpfs build"
     - "#cd build"
     - "wget --progress=dot -e dotbytes=2M -O- http://lava-leg02/~mwhudson/trusty-server-cloudimg-arm64-disk1.raw.img | dd of=/dev/sda bs=1M"
     - "sync"
-    - "fdisk -l /dev/sda"
+    - "mount /dev/sda1 /mnt"
+    - "ls /mnt"
+    - "chroot /mnt flash-kernel"
+    - "chroot /mnt sh -c flash-kernel"
