@@ -27,7 +27,7 @@
                         "git-repo": "http://github.com/mwhudson/lava-deploy-job",
                         "testdef": "splat.yaml"
                     }                ],
-                "timeout": 18000
+                "timeout": 900
             }
         },
         {
@@ -53,16 +53,10 @@
             }
         },
         {
-            "command": "lava_test_shell",
+            "command": "lava_command_run",
             "parameters": {
-                "testdef_repos": [
-                    {
-                        "git-repo": "git://github.com/mwhudson/testing-openstack",
-                        "revision": "arm64-trusty",
-                        "testdef": "tempest.yaml"
-                    }
-                ],
-                "timeout": 7200
+                "commands": ["do-tempest.sh"],
+                "timeout": 18000
             }
         },
         {
@@ -76,5 +70,5 @@
     "device_type": "mustang",
     "job_name": "mwhudson-hacking",
     "logging_level": "DEBUG",
-    "timeout": 18000
+    "timeout": 24000
 }
