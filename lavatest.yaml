@@ -1,0 +1,24 @@
+metadata:
+   name: lava-deploy
+   maintainer:
+      - Michael Hudson-Doyle <michael.hudson@linaro.org>
+   format: "Lava-Test-Shell Test Definition 1.0"
+   version: 1.0
+   description: ""
+   os:
+      - ubuntu
+   devices:
+      - mustang
+   environment:
+      - lava-test-shell
+
+
+run:
+  steps:
+    - "mkdir build"
+    - "mount -t tmpfs -o size=2G build"
+    - "cd build"
+    - "wget http://lava-leg02/~mwhudson/trusty-server-cloudimg-arm64-disk1.raw.img"
+    - "dd if=trusty-server-cloudimg-arm64-disk1.raw.img of=/dev/sda bs=1M"
+    - "sync"
+    - "fdisk -l /dev/sda"
