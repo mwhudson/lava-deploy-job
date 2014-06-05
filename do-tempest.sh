@@ -1,5 +1,10 @@
 #!/bin/bash
 ls -l /etc
+
+ip addr show dev eth0 scope global
+
+sleep 1800
+
 apt-get update
 apt-get -y install lsb-release git nmap vim pm-utils bridge-utils openssh-server
 
