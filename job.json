@@ -69,10 +69,10 @@
                 "kernel": "http://images-internal/mustang/uImage_1.11",
                 "login_prompt": "login:",
                 "nfsrootfs": "http://images.armcloud.us/misc/tyler-apm/debian-apm.tar.bz2",
-                "password": "linaro",
+                "password": "password",
                 "password_prompt": "Password",
                 "target_type": "ubuntu",
-                "username": "root"
+                "username": "ubuntu"
             }
         },
         {
