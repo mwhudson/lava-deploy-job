@@ -31,7 +31,10 @@ run:
     - "sed -e 's/@SDA1UUID@/'${SDA1UUID}'/' boot.script > /mnt/boot/boot.script"
     - "cat /mnt/boot/boot.script"
     - "chroot /mnt bash -x /fk.sh"
+    - "rm /mnt/fk.sh"
     - "mv /mnt/etc/resolv.conf.bak /mnt/etc/resolv.conf"
     - "mkdir -p /mnt/var/lib/cloud/seed/nocloud"
     - "cp -a cloud-seed/* /mnt/var/lib/cloud/seed/nocloud/"
+    - "umount /mnt"
+    - "sync"
 
