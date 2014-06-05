@@ -42,7 +42,7 @@
             }
         }
     ],
-    "target": "mustang05",
+    "device_type": "mustang",
     "job_name": "mwhudson-hacking",
     "logging_level": "DEBUG",
     "timeout": 18000
