@@ -1,0 +1,5 @@
+setenv bootargs 'console=ttyS0,115200n8 root=UUID=@SDA1UUID@ rw'
+ext4load scsi 0 ${kernel_addr_r} boot/uImage
+ext4load scsi 0 ${ramdisk_addr_r} boot/uInitrd
+ext4load scsi 0 ${fdt_addr_r} boot/apm-mustang.dtb
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
