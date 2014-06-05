@@ -32,6 +32,19 @@
             }
         },
         {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "http://images-internal/mustang/mustang.dtb_1.11",
+                "kernel": "http://images-internal/mustang/uImage_1.11",
+                "login_prompt": "login:",
+                "nfsrootfs": "http://images.armcloud.us/misc/tyler-apm/debian-apm.tar.bz2",
+                "password": "linaro",
+                "password_prompt": "Password",
+                "target_type": "ubuntu",
+                "username": "root"
+            }
+        },
+        {
             "command": "boot_linaro_image",
             "parameters": {
                 "test_image_prompt": "root@sid"
@@ -44,9 +57,30 @@
                     {
                         "git-repo": "http://github.com/mwhudson/lava-deploy-job",
                         "testdef": "flash-kernel.yaml"
+                    },
+                    {
+                        "git-repo": "http://git.linaro.org/git/lava-team/hacking-session.git",
+                        "parameters": {
+                            "PUB_KEY": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3Of8N+prOkTi9b1zPXoXZOb0VSxv8G/eKXVtCM67spae0EIKo283rd9wvrs+cugJZo8IX2NIukVRtrLd8Yu8sDdcwvZjDIwFmFyVsPtI5mSXV9d2CfbQd3oyc32f4CR2krl/JXZR5nJVOCcJcw2ePu4tkpHgIYEQm5WwY4/v2NustDNyWHpX22kna5JKBkWaf4BICUyR7K9YqFXqIpXkI7wwodSY5BNmMSKrAKbE07gWsvZzlXp78oLQXrdYEVpaj5Nrb9Hc9T6xJWtDB9NlT+6eeZJ+hQ/Ut/wsOERX/i/tTNrtiScLvYuDeZoP0Wz0pwWInG+Db0zgGFKL3pr6gQ== mwh@grond"
+                        },
+                        "testdef": "hacking-session-oe.yaml"
                     }
+
                 ],
                 "timeout": 18000
+            }
+        },
+        {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "http://images-internal/mustang/mustang.dtb_1.11",
+                "kernel": "http://images-internal/mustang/uImage_1.11",
+                "login_prompt": "login:",
+                "nfsrootfs": "http://images.armcloud.us/misc/tyler-apm/debian-apm.tar.bz2",
+                "password": "linaro",
+                "password_prompt": "Password",
+                "target_type": "ubuntu",
+                "username": "root"
             }
         },
         {
