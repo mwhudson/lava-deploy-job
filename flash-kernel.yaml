@@ -22,5 +22,8 @@ run:
     - "cp /etc/resolv.conf /mnt/etc/resolv.conf"
     - "mount -t proc procfs /mnt/proc"
     - "cp fk.sh /mnt/fk.sh"
+    - "SDA1UUID=`ls /dev/disk/by-uuid`"
+    - "sed -e 's/@SDA1UUID@/'${SDA1UUID}'/' boot.script > /mnt/boot/boot.script"
+    - "cat /mnt/boot/boot.script"
     - "chroot /mnt bash -x /fk.sh"
     - "mv /mnt/etc/resolv.conf.bak /mnt/etc/resolv.conf"
