@@ -16,10 +16,9 @@ metadata:
 run:
   steps:
     - "set -x"
-    - "mkdir build"
-    - "mount -t tmpfs -o size=2G tmpfs build"
-    - "cd build"
-    - "wget --progress=dot -e dotbytes=2M http://lava-leg02/~mwhudson/trusty-server-cloudimg-arm64-disk1.raw.img"
-    - "dd if=trusty-server-cloudimg-arm64-disk1.raw.img of=/dev/sda bs=1M"
+    - "#mkdir build"
+    - "#mount -t tmpfs -o size=2G tmpfs build"
+    - "#cd build"
+    - "wget --progress=dot -e dotbytes=2M -O- http://lava-leg02/~mwhudson/trusty-server-cloudimg-arm64-disk1.raw.img | dd of=/dev/sda bs=1M"
     - "sync"
     - "fdisk -l /dev/sda"
