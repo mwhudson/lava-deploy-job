@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 ls -l /etc
 
 cat /etc/resolv.conf
@@ -13,4 +13,5 @@ git clone -b arm64-trusty git://github.com/mwhudson/testing-openstack
 cd testing-openstack
 ./setup.sh
 cd /opt/stack/tempest
+cp etc/logging.conf.sample etc/logging.conf
 ./run_tempest.sh -l -N -t
