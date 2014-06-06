@@ -56,7 +56,7 @@
             "command": "lava_command_run",
             "parameters": {
                 "commands": ["do-tempest.sh"],
-                "timeout": 18000
+                "timeout": 24000
             }
         },
         {
@@ -75,6 +75,16 @@
         {
             "command": "boot_linaro_image",
             "parameters": {
+                "boot_cmds": ["setenv autoload no",
+                              "setenv kernel_addr_r '{KERNEL_ADDR}'",
+                              "setenv initrd_addr_r '{RAMDISK_ADDR}'",
+                              "setenv fdt_addr_r '{DTB_ADDR}'",
+                              "setenv loadkernel 'tftp ${kernel_addr_r} {KERNEL}'",
+                              "setenv loadinitrd 'tftp ${initrd_addr_r} {RAMDISK}'",
+                              "setenv loadfdt 'tftp ${fdt_addr_r} {DTB}'",
+                              "setenv bootargs 'root=/dev/ram0 rw panic=1 console=ttyS0,115200 earlyprintk=uart8250-32bit,0x1c020000 debug ip=dhcp'",
+                              "setenv bootcmd 'dhcp; setenv serverip {SERVER_IP}; run loadkernel; run loadinitrd; run loadfdt; {BOOTX}'",
+                              "boot"],
                 "test_image_prompt": "root@sid"
             }
         },
@@ -85,7 +95,8 @@
                     {
                         "git-repo": "http://github.com/mwhudson/lava-deploy-job",
                         "testdef": "attach-logs.yaml"
-                    }                ],
+                    }
+                ],
                 "timeout": 900
             }
         },
