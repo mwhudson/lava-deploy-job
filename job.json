@@ -60,6 +60,36 @@
             }
         },
         {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "http://images-internal/mustang/mustang.dtb_1.11",
+                "kernel": "http://images-internal/mustang/uImage_1.11",
+                "login_prompt": "login:",
+                "nfsrootfs": "http://images.armcloud.us/misc/tyler-apm/debian-apm.tar.bz2",
+                "password": "linaro",
+                "password_prompt": "Password",
+                "target_type": "ubuntu",
+                "username": "root"
+            }
+        },
+        {
+            "command": "boot_linaro_image",
+            "parameters": {
+                "test_image_prompt": "root@sid"
+            }
+        },
+        {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "http://github.com/mwhudson/lava-deploy-job",
+                        "testdef": "attach-logs.yaml"
+                    }                ],
+                "timeout": 900
+            }
+        },
+        {
             "command": "submit_results",
             "parameters": {
                 "server": "http://validation.linaro.org/RPC2/",

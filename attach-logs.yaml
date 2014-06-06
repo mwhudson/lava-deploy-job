@@ -1,0 +1,24 @@
+metadata:
+   name: attach-logs
+   maintainer:
+      - Michael Hudson-Doyle <michael.hudson@linaro.org>
+   format: "Lava-Test-Shell Test Definition 1.0"
+   version: 1.0
+   description: ""
+   os:
+      - ubuntu
+   devices:
+      - mustang
+   environment:
+      - lava-test-shell
+
+
+run:
+  steps:
+    - "mount /dev/sda1 /mnt"
+    - "cd /mnt/root"
+    - "lava-test-run-attach tempest.log"
+    - "cd /mnt/opt/stack/log"
+    - "tar -czf ../logs.tar.gz ."
+    - "cd .."
+    - "lava-test-run-attach logs.tar.gz"

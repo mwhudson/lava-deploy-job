@@ -14,4 +14,4 @@ cd testing-openstack
 ./setup.sh
 cd /opt/stack/tempest
 cp etc/logging.conf.sample etc/logging.conf
-./run_tempest.sh -l -N -t
+sudo -u stack ./run_tempest.sh -l -N -t | tee ~/tempest-logs.txt
