@@ -20,5 +20,11 @@ cp qemu-system-aarch64 `which qemu-system-aarch64`
 cd ../
 rm -rf scratch
 cd /boot
+cat boot.scr
+cat boot.script
 mkimage -A arm -T script -C none -n "Ubuntu boot script" -d boot.script boot.scr
+cat boot.scr
+sync
+sync
+sleep 60
 sync
