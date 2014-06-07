@@ -1,4 +1,11 @@
 #!/bin/bash
+cat /etc/resolv.conf
+# WHISKY TANGO FOXTROT
+resolvconf -u
+cat /etc/resolv.conf
+
+apt-get update
+
 mkdir scratch
 cd scratch
 wget http://lava-leg02/~mwhudson/linux-headers-3.15.0-5_3.15.0-5.10+mwhudson_all.deb
