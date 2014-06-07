@@ -25,7 +25,8 @@
                 "testdef_repos": [
                     {
                         "git-repo": "http://github.com/mwhudson/lava-deploy-job",
-                        "testdef": "splat.yaml"
+                        "testdef": "splat.yaml",
+                        "parameters": {"PSCI_TEST": "yes"}
                     }
                 ],
                 "timeout": 900
