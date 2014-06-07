@@ -6,7 +6,7 @@
                 "dtb": "http://images-internal/mustang/mustang.dtb_1.11",
                 "kernel": "http://images-internal/mustang/uImage_1.11",
                 "login_prompt": "login:",
-                "nfsrootfs": "http://images.armcloud.us/misc/tyler-apm/debian-apm.tar.bz2",
+                "nfsrootfs": "http://lava-leg02/~mwhudson/debian-arm64-chroot.tar.bz2",
                 "password": "linaro",
                 "password_prompt": "Password",
                 "target_type": "ubuntu",
@@ -26,7 +26,8 @@
                     {
                         "git-repo": "http://github.com/mwhudson/lava-deploy-job",
                         "testdef": "splat.yaml"
-                    }                ],
+                    }
+                ],
                 "timeout": 900
             }
         },
