@@ -16,8 +16,9 @@ metadata:
 run:
   steps:
     - "mount /dev/sda1 /mnt"
-    - "cd /mnt/root"
-    - "lava-test-run-attach tempest.log"
+    - "set +e"
+    - "cd /mnt/opt/stack/tempest/"
+    - "lava-test-run-attach tempest-run.log"
     - "cd /mnt/opt/stack/log"
     - "tar -czf ../logs.tar.gz ."
     - "cd .."
