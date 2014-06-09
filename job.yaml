@@ -54,7 +54,7 @@ actions:
   - command: lava_command_run
     parameters:
       commands:
-        - 'bash -x psci.sh'
+        - 'if [ -e /psci.sh ]; then bash -x /psci.sh; fi '
       timeout: 24000
 
   - *deploy-sata
