@@ -4,6 +4,12 @@ cat /etc/resolv.conf
 resolvconf -u
 cat /etc/resolv.conf
 
+. /etc/lavavars
+
+if [ "$LAVA_PSCI" != "yes" ]; then
+    exit 0
+fi
+
 apt-get update
 
 mkdir scratch

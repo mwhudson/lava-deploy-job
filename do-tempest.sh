@@ -1,5 +1,6 @@
 #!/bin/bash -x
-ls -l /etc
+
+. /etc/lavavars
 
 cat /etc/resolv.conf
 # WHISKY TANGO FOXTROT
@@ -14,4 +15,9 @@ cd testing-openstack
 ./setup.sh
 cd /opt/stack/tempest
 cp etc/logging.conf.sample etc/logging.conf
-sudo -u stack ./run_tempest.sh -l -N -t | tee ~/tempest-logs.txt
+if [ "$LAVA_PSCI" = "yes" ]; then
+    sudo -u stack ./run_tempest.sh -l -N -t | tee ~/tempest-logs.txt
+fi
+if [ "$LAVA_SLEEP_FOR_ACCESS" = "yes" ]; then
+    sleep 3600
+fi

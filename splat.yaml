@@ -29,7 +29,8 @@ run:
     - "cp fk.sh /mnt/fk.sh"
     - "chroot /mnt bash -x /fk.sh"
     - "rm /mnt/fk.sh"
-    - "[ $PSCI_TEST == \"yes\" ] && { cp psci.sh /mnt/psci.sh; }"
+    - "set | grep ^LAVA | sed -e 's%^%export %' > /mnt/etc/lavavars"
+    - "cp psci.sh /mnt/psci.sh"
     - "cp do-tempest.sh /mnt/bin/do-tempest.sh"
     - "chmod a+x /mnt/bin/do-tempest.sh"
     - "mv /mnt/etc/resolv.conf.bak /mnt/etc/resolv.conf"
@@ -42,4 +43,6 @@ run:
     - "sync"
 
 params:
-  PSCI_TEST: no
+  LAVA_PSCI: no
+  LAVA_RUN_TEMPEST: yes
+  LAVA_SLEEP_FOR_ACCESS: no
