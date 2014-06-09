@@ -15,11 +15,14 @@ metadata:
 
 run:
   steps:
+    - "set -x"
     - "mount /dev/sda1 /mnt"
     - "set +e"
-    - "cd /mnt/opt/stack/tempest/"
-    - "lava-test-run-attach tempest-run.log"
+    - "cd"
+    - "lava-test-run-attach tempest-logs.txt"
     - "cd /mnt/opt/stack/log"
-    - "tar -czf ../logs.tar.gz ."
+    - "tar -czf ../log.tar.gz ."
     - "cd .."
+    - "lava-test-run-attach log.tar.gz"
+    - "cd /mnt/opt/stack/logs && tar -czf ../logs.tar.gz . && cd .."
     - "lava-test-run-attach logs.tar.gz"

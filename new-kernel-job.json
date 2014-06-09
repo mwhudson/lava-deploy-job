@@ -26,10 +26,39 @@
                     {
                         "git-repo": "http://github.com/mwhudson/lava-deploy-job",
                         "testdef": "splat.yaml",
-                        "parameters": {"PSCI_TEST": "no"}
+                        "parameters": {"PSCI_TEST": "yes"}
                     }
                 ],
                 "timeout": 900
+            }
+        },
+        {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "http://images-internal/mustang/mustang.dtb_1.11",
+                "kernel": "http://images-internal/mustang/uImage_1.11",
+                "login_prompt": "login:",
+                "password": "password",
+                "password_prompt": "Password",
+                "target_type": "ubuntu",
+                "username": "ubuntu",
+                "login_commands": ["sudo -s"]
+            }
+        },
+        {
+            "command": "boot_linaro_image",
+            "parameters": {
+                "boot_cmds": ["setenv script_addr_r 0x4004000000",
+                              "scsi init",
+                              "ext4load scsi 0 ${script_addr_r} boot/boot.scr",
+                              "source ${script_addr_r}"]
+            }
+        },
+        {
+            "command": "lava_command_run",
+            "parameters": {
+                "commands": ["bash -x /psci.sh"],
+                "timeout": 24000
             }
         },
         {
