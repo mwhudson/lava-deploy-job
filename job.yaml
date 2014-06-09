@@ -35,7 +35,8 @@ actions:
     parameters:
       dtb: http://images-internal/mustang/mustang.dtb_1.11
       kernel: http://images-internal/mustang/uImage_1.11
-      login_commands: [sudo -s]
+      login_commands:
+        - 'sleep 60; sudo -s'
       login_prompt: 'login:'
       password: password
       password_prompt: Password
