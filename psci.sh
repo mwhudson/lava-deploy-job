@@ -1,8 +1,7 @@
 #!/bin/bash
-cat /etc/resolv.conf
-# WHISKY TANGO FOXTROT
+
+# This is needed because we are lying to LAVA about how booting works...
 resolvconf -u
-cat /etc/resolv.conf
 
 . /etc/lavavars
 

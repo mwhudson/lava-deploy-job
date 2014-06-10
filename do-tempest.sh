@@ -2,10 +2,8 @@
 
 . /etc/lavavars
 
-cat /etc/resolv.conf
-# WHISKY TANGO FOXTROT
+# This is needed because we are lying to LAVA about how booting works...
 resolvconf -u
-cat /etc/resolv.conf
 
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
