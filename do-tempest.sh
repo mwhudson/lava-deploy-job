@@ -7,6 +7,8 @@ cat /etc/resolv.conf
 resolvconf -u
 cat /etc/resolv.conf
 
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
 apt-get update
 apt-get -y install lsb-release git nmap vim pm-utils bridge-utils openssh-server
 
