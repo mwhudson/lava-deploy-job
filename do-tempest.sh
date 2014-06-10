@@ -15,7 +15,7 @@ cd testing-openstack
 ./setup.sh
 cd /opt/stack/tempest
 cp etc/logging.conf.sample etc/logging.conf
-if [ "$LAVA_PSCI" = "yes" ]; then
+if [ "$LAVA_RUN_TEMPEST" = "yes" ]; then
     sudo -u stack ./run_tempest.sh -l -N -t | tee ~/tempest-logs.txt
 fi
 if [ "$LAVA_SLEEP_FOR_ACCESS" = "yes" ]; then
