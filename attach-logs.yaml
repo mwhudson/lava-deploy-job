@@ -19,7 +19,7 @@ run:
     - "mount /dev/sda1 /mnt"
     - "set +e"
     - "cd ~ubuntu"
-    - "lava-test-run-attach tempest-logs.txt"
+    - "lava-test-run-attach /home/ubuntu/tempest-logs.txt"
     - "cd /mnt/opt/stack/log"
     - "tar -czf ../log.tar.gz ."
     - "cd .."

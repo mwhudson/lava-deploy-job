@@ -46,3 +46,4 @@ params:
   LAVA_PSCI: no
   LAVA_RUN_TEMPEST: yes
   LAVA_SLEEP_FOR_ACCESS: no
+  LAVA_TESTS_TO_RUN: ''
