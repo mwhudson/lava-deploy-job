@@ -27,8 +27,9 @@ actions:
         - git-repo: http://github.com/mwhudson/lava-deploy-job
           parameters:
             LAVA_PSCI: 'no'
-            LAVA_RUN_TEMPEST: 'no'
-            LAVA_SLEEP_FOR_ACCESS: 'yes'
+            LAVA_RUN_TEMPEST: 'yes'
+            LAVA_SLEEP_FOR_ACCESS: 'no'
+            LAVA_TESTS_TO_RUN: ''
           testdef: splat.yaml
       timeout: 900
 
