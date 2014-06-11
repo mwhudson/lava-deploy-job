@@ -23,3 +23,4 @@ run:
     - "cd /mnt/opt/stack/tempest"
     - "tar -czf tr.tar.gz .testrepository"
     - "lava-test-run-attach tr.tar.gz"
+    - "cat /mnt/home/ubuntu/attachments/results.txt | while read test result; do lava-test-case $test --result $result; done"
