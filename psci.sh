@@ -29,6 +29,7 @@ cat boot.scr
 cat boot.script
 mkimage -A arm -T script -C none -n "Ubuntu boot script" -d boot.script boot.scr
 cat boot.scr
+rm /etc/udev/rules.d/70-persistent-net.rules || true
 sync
 sync
 sleep 60
