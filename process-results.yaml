@@ -1,10 +1,10 @@
 metadata:
-   name: attach-logs
+   name: process-results
    maintainer:
       - Michael Hudson-Doyle <michael.hudson@linaro.org>
    format: "Lava-Test-Shell Test Definition 1.0"
    version: 1.0
-   description: ""
+   description: "Read the results of running tempest from /dev/sda and convert them to LAVA results."
    os:
       - ubuntu
    devices:

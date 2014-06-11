@@ -1,17 +1,16 @@
 metadata:
-   name: lava-deploy
+   name: deploy-trusty-cloudimg
    maintainer:
       - Michael Hudson-Doyle <michael.hudson@linaro.org>
    format: "Lava-Test-Shell Test Definition 1.0"
    version: 1.0
-   description: ""
+   description: "Deploy a trusty cloud image to /dev/sda and prep it for running tempest."
    os:
       - ubuntu
    devices:
       - mustang
    environment:
       - lava-test-shell
-
 
 run:
   steps:

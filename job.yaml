@@ -1,6 +1,5 @@
 device_type: mustang
-job_name: mwhudson-hacking
-logging_level: DEBUG
+job_name: mwhudson-devstack
 timeout: 24000
 
 actions:
@@ -17,8 +16,20 @@ actions:
       target_type: ubuntu
       username: root
 
-  - command: boot_linaro_image
+  - &boot-nfs
+    command: boot_linaro_image
     parameters:
+      boot_cmds:
+        - 'setenv autoload no'
+        - 'setenv kernel_addr_r ''{KERNEL_ADDR}'''
+        - 'setenv initrd_addr_r ''{RAMDISK_ADDR}'''
+        - 'setenv fdt_addr_r ''{DTB_ADDR}'''
+        - 'setenv loadkernel ''tftp ${kernel_addr_r} {KERNEL}'''
+        - 'setenv loadinitrd ''tftp ${initrd_addr_r} {RAMDISK}'''
+        - 'setenv loadfdt ''tftp ${fdt_addr_r} {DTB}'''
+        - 'setenv nfsargs ''setenv bootargs root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} panic=1 console=ttyS0,115200 earlyprintk=uart8250-32bit,0x1c020000 debug ip=dhcp'''
+        - 'setenv bootcmd ''dhcp; setenv serverip {SERVER_IP}; run loadkernel; run loadinitrd; run loadfdt; run nfsargs; {BOOTX}'''
+        - 'boot'
       test_image_prompt: root@sid
 
   - command: lava_test_shell
@@ -62,7 +73,6 @@ actions:
       timeout: 24000
 
   - *deploy-sata
-
   - *boot-sata
 
   - command: lava_command_run
@@ -72,21 +82,7 @@ actions:
       timeout: 24000
 
   - *deploy-nfs
-
-  - command: boot_linaro_image
-    parameters:
-      boot_cmds:
-        - 'setenv autoload no'
-        - 'setenv kernel_addr_r ''{KERNEL_ADDR}'''
-        - 'setenv initrd_addr_r ''{RAMDISK_ADDR}'''
-        - 'setenv fdt_addr_r ''{DTB_ADDR}'''
-        - 'setenv loadkernel ''tftp ${kernel_addr_r} {KERNEL}'''
-        - 'setenv loadinitrd ''tftp ${initrd_addr_r} {RAMDISK}'''
-        - 'setenv loadfdt ''tftp ${fdt_addr_r} {DTB}'''
-        - 'setenv nfsargs ''setenv bootargs root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} panic=1 console=ttyS0,115200 earlyprintk=uart8250-32bit,0x1c020000 debug ip=dhcp'''
-        - 'setenv bootcmd ''dhcp; setenv serverip {SERVER_IP}; run loadkernel; run loadinitrd; run loadfdt; run nfsargs; {BOOTX}'''
-        - 'boot'
-      test_image_prompt: root@sid
+  - *boot-nfs
 
   - command: lava_test_shell
     parameters:
