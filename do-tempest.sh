@@ -8,7 +8,7 @@ resolvconf -u
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
 apt-get update
-apt-get -y install lsb-release git nmap vim pm-utils bridge-utils openssh-server
+apt-get -y install lsb-release git nmap vim pm-utils bridge-utils openssh-server subunit
 
 t_dir=$(pwd)
 
