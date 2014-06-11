@@ -24,5 +24,6 @@ run:
     - "tar -czf ../log.tar.gz ."
     - "cd .."
     - "lava-test-run-attach log.tar.gz"
-    - "cd /mnt/opt/stack/logs && tar -czf ../logs.tar.gz . && cd .."
-    - "lava-test-run-attach logs.tar.gz"
+    - "cd /mnt/opt/stack/tempest"
+    - "tar -czf tr.tar.gz .testrepository"
+    - "lava-test-run-attach tr.tar.gz"

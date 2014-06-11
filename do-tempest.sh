@@ -16,8 +16,11 @@ cd testing-openstack
 cd /opt/stack/tempest
 cp etc/logging.conf.sample etc/logging.conf
 if [ "$LAVA_RUN_TEMPEST" = "yes" ]; then
-    sudo -u stack ./run_tempest.sh -l -N -t -- $LAVA_TESTS_TO_RUN | tee /home/ubuntu/tempest-logs.txt
+    sudo -u stack ./run_tempest.sh -l -N -t -- $LAVA_TESTS_TO_RUN 2>&1 | tee /home/ubuntu/tempest-logs.txt
 fi
 if [ "$LAVA_SLEEP_FOR_ACCESS" = "yes" ]; then
     sleep 3600
 fi
+sync
+sleep 60
+sync

@@ -39,7 +39,11 @@ run:
     - "cd"
     - "sync"
     - "sleep 60"
-    - "umount /mnt || lsof"
+    - "umount /mnt || true"
+    - "sync"
+    - "sleep 5"
+    - "sync"
+    - "umount /mnt || true"
     - "sync"
 
 params:
