@@ -27,4 +27,4 @@ run:
     - "umount /mnt"
 
 parse:
-  pattern: "TEST<(?P<test_case_id>[-0-9A-Za-z_.])> RESULT<(?P<result>[-0-9A-Za-z_.])>"
+  pattern: "TEST<(?P<test_case_id>[-0-9A-Za-z_.]+)> RESULT<(?P<result>[-0-9A-Za-z_.]+)>"
