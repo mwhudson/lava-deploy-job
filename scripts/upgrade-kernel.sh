@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # This is needed because we are lying to LAVA about how booting works...
 resolvconf -u

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 apt-get install u-boot-tools
 flash-kernel
 cd /boot
