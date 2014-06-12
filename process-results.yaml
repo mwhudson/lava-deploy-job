@@ -24,7 +24,9 @@ run:
     - "tar -czf tr.tar.gz .testrepository"
     - "lava-test-run-attach tr.tar.gz"
     - "chroot /mnt python /opt/lava-scripts/simplify-results.py /home/ubuntu/attachments/results.csv  /home/ubuntu/attachments/all-tests.txt"
+    - "cd"
+    - "sleep 5"
     - "umount /mnt"
 
 parse:
-  pattern: "TEST<(?P<test_case_id>[-0-9A-Za-z_.]+)> RESULT<(?P<result>[-0-9A-Za-z_.]+)>"
+  pattern: "TEST@(?P<test_case_id>[-0-9A-Za-z_.]+)@ RESULT@(?P<result>[-0-9A-Za-z_.]+)@"
