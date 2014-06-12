@@ -23,7 +23,7 @@ run:
     - "cd /mnt/opt/stack/tempest"
     - "tar -czf tr.tar.gz .testrepository"
     - "lava-test-run-attach tr.tar.gz"
-    - "chroot /mnt python /opt/lava-scripts/simplify-results.py /home/ubuntu/attachments/results.csv  /home/ubuntu/attachments/all-tests.txt > /home/ubuntu/attachments/results.txt"
+    - "chroot /mnt python /opt/lava-scripts/simplify-results.py /home/ubuntu/attachments/results.csv  /home/ubuntu/attachments/all-tests.txt"
     - "umount /mnt"
 
 parse:
