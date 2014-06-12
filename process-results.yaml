@@ -23,5 +23,8 @@ run:
     - "cd /mnt/opt/stack/tempest"
     - "tar -czf tr.tar.gz .testrepository"
     - "lava-test-run-attach tr.tar.gz"
-    - "set +x"
-    - "cat /mnt/home/ubuntu/attachments/results.txt | while read test result; do lava-test-case $test --result $result; done"
+    - "chroot /mnt python /opt/lava-scripts/simplify-results.py /home/ubuntu/attachments/results.csv  /home/ubuntu/attachments/all-tests.txt > /home/ubuntu/attachments/results.txt"
+    - "umount /mnt"
+
+parse:
+  pattern: "TEST<(?P<test_case_id>[-0-9A-Za-z_.])> RESULT<(?P<result>[-0-9A-Za-z_.])>"
