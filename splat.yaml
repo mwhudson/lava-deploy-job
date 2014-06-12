@@ -32,12 +32,8 @@ run:
     - "mkdir -p /mnt/var/lib/cloud/seed/nocloud-net"
     - "cp -a cloud-seed/* /mnt/var/lib/cloud/seed/nocloud-net/"
     - "sync"
-    - "sleep 60"
     - "umount /mnt || true"
-    - "sync"
     - "sleep 5"
-    - "sync"
-    - "umount /mnt || true"
     - "sync"
 
 params:
