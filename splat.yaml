@@ -25,6 +25,7 @@ run:
     - "SDA1UUID=`ls /dev/disk/by-uuid`"
     - "sed -e 's/@SDA1UUID@/'${SDA1UUID}'/' boot.script > /mnt/boot/boot.script"
     - "cat /mnt/boot/boot.script"
+    - "cp script-results.py /mnt/"
     - "cp fk.sh /mnt/fk.sh"
     - "chroot /mnt bash -x /fk.sh"
     - "rm /mnt/fk.sh"
