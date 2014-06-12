@@ -1,4 +1,5 @@
 import csv
+import re
 import sys
 
 result_map = {
@@ -14,4 +15,5 @@ for d in csv.DictReader(open(sys.argv[1])):
     if '[' in test_id:
         test_id = test_id[:test_id.index('[')]
     result = result_map.get(d.get('status', 'unknown'))
+    test_id = re.sub('[^0-9A-Za-z_.]', '-', test_id)
     print test_id, result

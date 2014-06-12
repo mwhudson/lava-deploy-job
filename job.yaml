@@ -1,6 +1,6 @@
 device_type: mustang
 job_name: mwhudson-devstack
-timeout: 24000
+timeout: 30000
 
 actions:
 
@@ -89,7 +89,7 @@ actions:
       testdef_repos:
       - git-repo: 'http://github.com/mwhudson/lava-deploy-job'
         testdef: process-results.yaml
-      timeout: 900
+      timeout: 1800
 
   - command: submit_results
     parameters:
