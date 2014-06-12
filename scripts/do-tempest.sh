@@ -19,7 +19,7 @@ mkdir /home/ubuntu/attachments
 if [ "$LAVA_RUN_TEMPEST" = "yes" ]; then
     sudo -u stack ./run_tempest.sh -l -N -t -- $LAVA_TESTS_TO_RUN 2>&1 | tee /home/ubuntu/attachments/tempest-logs.txt
     testr last --subunit | subunit-1to2 | subunit2csv > /home/ubuntu/attachments/results.csv
-    python /simplify-results.py /home/ubuntu/attachments/results.csv > /home/ubuntu/attachments/results.txt
+    python /opt/lava-scripts/simplify-results.py /home/ubuntu/attachments/results.csv > /home/ubuntu/attachments/results.txt
     cd /opt/stack/log
     tar -czf /home/ubuntu/attachments/devstack-logs.tgz .
 fi

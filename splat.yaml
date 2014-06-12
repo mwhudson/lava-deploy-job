@@ -19,24 +19,18 @@ run:
     - "sync"
     - "echo 1 > /sys/class/block/sda/device/rescan"
     - "mount /dev/sda1 /mnt"
+    - "mkdir -p /mnt/opt/lava-scripts"
+    - "cp -a scripts/* /mnt/opt/lava-scripts"
     - "mv /mnt/etc/resolv.conf /mnt/etc/resolv.conf.bak"
     - "cp /etc/resolv.conf /mnt/etc/resolv.conf"
     - "mount -t proc procfs /mnt/proc"
-    - "SDA1UUID=`ls /dev/disk/by-uuid`"
-    - "sed -e 's/@SDA1UUID@/'${SDA1UUID}'/' boot.script > /mnt/boot/boot.script"
-    - "cat /mnt/boot/boot.script"
-    - "cp script-results.py /mnt/"
-    - "cp fk.sh /mnt/fk.sh"
-    - "chroot /mnt bash -x /fk.sh"
-    - "rm /mnt/fk.sh"
-    - "set | grep ^LAVA | sed -e 's%^%export %' > /mnt/etc/lavavars"
-    - "cp psci.sh /mnt/psci.sh"
-    - "cp do-tempest.sh /mnt/bin/do-tempest.sh"
-    - "chmod a+x /mnt/bin/do-tempest.sh"
+    - "cp boot.script /mnt/boot/"
+    - "chroot /mnt bash -x /opt/lava-scripts/fk.sh"
     - "mv /mnt/etc/resolv.conf.bak /mnt/etc/resolv.conf"
+    - "umount /mnt/proc"
+    - "set | grep ^LAVA | sed -e 's%^%export %' > /mnt/etc/lavavars"
     - "mkdir -p /mnt/var/lib/cloud/seed/nocloud-net"
     - "cp -a cloud-seed/* /mnt/var/lib/cloud/seed/nocloud-net/"
-    - "cd"
     - "sync"
     - "sleep 60"
     - "umount /mnt || true"
@@ -47,7 +41,7 @@ run:
     - "sync"
 
 params:
-  LAVA_PSCI: no
+  LAVA_CUSTOM_KERNEL_VERSION: ''
   LAVA_RUN_TEMPEST: yes
   LAVA_SLEEP_FOR_ACCESS: no
   LAVA_TESTS_TO_RUN: ''

@@ -5,7 +5,7 @@ resolvconf -u
 
 . /etc/lavavars
 
-if [ "$LAVA_PSCI" != "yes" ]; then
+if [ -z "$LAVA_CUSTOM_KERNEL_VERSION" ]; then
     exit 0
 fi
 
@@ -13,9 +13,9 @@ apt-get update
 
 mkdir scratch
 cd scratch
-wget http://lava-leg02/~mwhudson/linux-headers-3.15.0-5_3.15.0-5.10+hyperscale.1_all.deb
-wget http://lava-leg02/~mwhudson/linux-headers-3.15.0-5-generic_3.15.0-5.10+hyperscale.1_arm64.deb
-wget http://lava-leg02/~mwhudson/linux-image-3.15.0-5-generic_3.15.0-5.10+hyperscale.1_arm64.deb
+wget http://lava-leg02/~mwhudson/linux-headers-${LAVA_CUSTOM_KERNEL_VERSION}_all.deb
+wget http://lava-leg02/~mwhudson/linux-headers-${LAVA_CUSTOM_KERNEL_VERSION}_arm64.deb
+wget http://lava-leg02/~mwhudson/linux-image-${LAVA_CUSTOM_KERNEL_VERSION}_arm64.deb
 dpkg -i *.deb
 apt-get install -f
 apt-get install -y qemu-system
@@ -25,10 +25,7 @@ cp qemu-system-aarch64 `which qemu-system-aarch64`
 cd ../
 rm -rf scratch
 cd /boot
-cat boot.scr
-cat boot.script
 mkimage -A arm -T script -C none -n "Ubuntu boot script" -d boot.script boot.scr
-cat boot.scr
 rm /etc/udev/rules.d/70-persistent-net.rules || true
 sync
 sync

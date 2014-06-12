@@ -37,7 +37,7 @@ actions:
       testdef_repos:
         - git-repo: http://github.com/mwhudson/lava-deploy-job
           parameters:
-            LAVA_PSCI: 'no'
+            LAVA_CUSTOM_KERNEL_VERSION: ''
             LAVA_RUN_TEMPEST: 'yes'
             LAVA_SLEEP_FOR_ACCESS: 'no'
             LAVA_TESTS_TO_RUN: ''
@@ -69,7 +69,7 @@ actions:
   - command: lava_command_run
     parameters:
       commands:
-        - 'if [ -e /psci.sh ]; then bash -x /psci.sh; fi '
+        - '/opt/lava-scripts/upgrade-kernel.sh'
       timeout: 24000
 
   - *deploy-sata
@@ -78,7 +78,7 @@ actions:
   - command: lava_command_run
     parameters:
       commands:
-        - 'do-tempest.sh'
+        - '/opt/lava-scripts/do-tempest.sh'
       timeout: 24000
 
   - *deploy-nfs
