@@ -38,54 +38,54 @@ actions:
           testdef: splat.yaml
       timeout: 900
 
-  - &deploy-sata
-    command: deploy_linaro_kernel
-    parameters:
-      dtb: http://images-internal/mustang/mustang.dtb_1.11
-      kernel: http://images-internal/mustang/uImage_1.11
-      login_commands:
-        - 'sleep 60; sudo -s'
-      login_prompt: 'login:'
-      password: password
-      password_prompt: Password
-      target_type: ubuntu
-      username: ubuntu
+  # - &deploy-sata
+  #   command: deploy_linaro_kernel
+  #   parameters:
+  #     dtb: http://images-internal/mustang/mustang.dtb_1.11
+  #     kernel: http://images-internal/mustang/uImage_1.11
+  #     login_commands:
+  #       - 'sleep 60; sudo -s'
+  #     login_prompt: 'login:'
+  #     password: password
+  #     password_prompt: Password
+  #     target_type: ubuntu
+  #     username: ubuntu
 
-  - &boot-sata
-    command: boot_linaro_image
-    parameters:
-      boot_cmds:
-        - 'setenv script_addr_r 0x4004000000'
-        - 'scsi init'
-        - 'ext4load scsi 0 ${script_addr_r} boot/boot.scr'
-        - 'source ${script_addr_r}'
+  # - &boot-sata
+  #   command: boot_linaro_image
+  #   parameters:
+  #     boot_cmds:
+  #       - 'setenv script_addr_r 0x4004000000'
+  #       - 'scsi init'
+  #       - 'ext4load scsi 0 ${script_addr_r} boot/boot.scr'
+  #       - 'source ${script_addr_r}'
 
-  - command: lava_command_run
-    parameters:
-      commands:
-        - '/opt/lava-scripts/upgrade-kernel.sh'
-      timeout: 24000
+  # - command: lava_command_run
+  #   parameters:
+  #     commands:
+  #       - '/opt/lava-scripts/upgrade-kernel.sh'
+  #     timeout: 24000
 
-  - *deploy-sata
-  - *boot-sata
+  # - *deploy-sata
+  # - *boot-sata
 
-  - command: lava_command_run
-    parameters:
-      commands:
-        - '/opt/lava-scripts/do-tempest.sh'
-      timeout: 24000
+  # - command: lava_command_run
+  #   parameters:
+  #     commands:
+  #       - '/opt/lava-scripts/do-tempest.sh'
+  #     timeout: 24000
 
-  - *deploy-nfs
-  - *boot-nfs
+  # - *deploy-nfs
+  # - *boot-nfs
 
-  - command: lava_test_shell
-    parameters:
-      testdef_repos:
-      - git-repo: 'http://github.com/mwhudson/lava-deploy-job'
-        testdef: process-results.yaml
-      timeout: 1800
+  # - command: lava_test_shell
+  #   parameters:
+  #     testdef_repos:
+  #     - git-repo: 'http://github.com/mwhudson/lava-deploy-job'
+  #       testdef: process-results.yaml
+  #     timeout: 1800
 
-  - command: submit_results
-    parameters:
-      server: 'http://validation.linaro.org/RPC2/'
-      stream: '/private/team/mustang/mwhudson/'
+  # - command: submit_results
+  #   parameters:
+  #     server: 'http://validation.linaro.org/RPC2/'
+  #     stream: '/private/team/mustang/mwhudson/'
