@@ -21,11 +21,9 @@ actions:
         - 'setenv kernel_addr_r ''{KERNEL_ADDR}'''
         - 'setenv initrd_addr_r ''{RAMDISK_ADDR}'''
         - 'setenv fdt_addr_r ''{DTB_ADDR}'''
-        - 'setenv loadkernel ''tftp ${kernel_addr_r} {KERNEL}'''
-        - 'setenv loadinitrd ''tftp ${initrd_addr_r} {RAMDISK}'''
-        - 'setenv loadfdt ''tftp ${fdt_addr_r} {DTB}'''
-        - 'setenv nfsargs ''setenv bootargs console=ttyS0,115200 panic root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} ip=dhcp'''
-        - 'setenv bootcmd ''dhcp; setenv serverip {SERVER_IP}; run loadkernel; run loadinitrd; run loadfdt; run nfsargs; {BOOTX}'''
+        - 'setenv loadstuff ''tftp ${kernel_addr_r} {KERNEL}; tftp ${initrd_addr_r} {RAMDISK}; tftp ${fdt_addr_r} {DTB}'''
+        - 'setenv bootargs console=ttyS0,115200 panic root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} ip=dhcp'
+        - 'setenv bootcmd ''dhcp; setenv serverip {SERVER_IP}; run loadstuff; {BOOTX}'''
         - 'boot'
 
   - command: lava_test_shell
