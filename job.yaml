@@ -7,14 +7,11 @@ actions:
   - &deploy-nfs
     command: deploy_linaro_kernel
     parameters:
-      dtb: 'http://images-internal/mustang/mustang.dtb_1.11'
-      kernel: 'http://images-internal/mustang/uImage_1.11'
-      login_prompt: 'login:'
-      nfsrootfs: 'http://lava-leg02/~mwhudson/debian-arm64-chroot.tar.bz2'
-      password: linaro
-      password_prompt: Password
+      dtb: 'http://lava-leg02/~mwhudson/mustang.dtb'
+      kernel: 'http://lava-leg02/~mwhudson/uImage'
+      ramdisk: 'http://lava-leg02/~mwhudson/uInitrd-nfs'
+      nfsrootfs: 'http://lava-leg02/~mwhudson/ubuntu-arm64-chroot.tar.bz2'
       target_type: ubuntu
-      username: root
 
   - &boot-nfs
     command: boot_linaro_image
@@ -27,10 +24,9 @@ actions:
         - 'setenv loadkernel ''tftp ${kernel_addr_r} {KERNEL}'''
         - 'setenv loadinitrd ''tftp ${initrd_addr_r} {RAMDISK}'''
         - 'setenv loadfdt ''tftp ${fdt_addr_r} {DTB}'''
-        - 'setenv nfsargs ''setenv bootargs root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} panic=1 console=ttyS0,115200 earlyprintk=uart8250-32bit,0x1c020000 debug ip=dhcp'''
+        - 'setenv nfsargs ''setenv bootargs panic root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} console=ttyS0,115200 ip=dhcp'''
         - 'setenv bootcmd ''dhcp; setenv serverip {SERVER_IP}; run loadkernel; run loadinitrd; run loadfdt; run nfsargs; {BOOTX}'''
         - 'boot'
-      test_image_prompt: root@sid
 
   - command: lava_test_shell
     parameters:
