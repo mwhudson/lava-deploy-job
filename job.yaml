@@ -24,7 +24,7 @@ actions:
         - 'setenv loadkernel ''tftp ${kernel_addr_r} {KERNEL}'''
         - 'setenv loadinitrd ''tftp ${initrd_addr_r} {RAMDISK}'''
         - 'setenv loadfdt ''tftp ${fdt_addr_r} {DTB}'''
-        - 'setenv nfsargs ''setenv bootargs panic root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} console=ttyS0,115200 ip=dhcp'''
+        - 'setenv nfsargs ''setenv bootargs console=ttyS0,115200 panic root=/dev/nfs rw nfsroot={SERVER_IP}:{NFSROOTFS} ip=dhcp'''
         - 'setenv bootcmd ''dhcp; setenv serverip {SERVER_IP}; run loadkernel; run loadinitrd; run loadfdt; run nfsargs; {BOOTX}'''
         - 'boot'
 
