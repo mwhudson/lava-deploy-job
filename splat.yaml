@@ -15,7 +15,9 @@ metadata:
 run:
   steps:
     - "set -x"
-    - "wget --progress=dot -e dotbytes=10M -O- http://lava-leg02/~mwhudson/trusty-server-cloudimg-arm64-disk1.raw.img | dd of=/dev/sda bs=1M"
+    - "wget http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-arm64-disk1.img"
+    - "qemu-img -p convert -O raw trusty-server-cloudimg-arm64-disk1.img trusty-server-cloudimg-arm64-disk1.raw.img"
+    - "dd if=trusty-server-cloudimg-arm64-disk1.raw.img of=/dev/sda bs=1M"
     - "sync"
     - "echo 1 > /sys/class/block/sda/device/rescan"
     - "mount /dev/sda1 /mnt"
