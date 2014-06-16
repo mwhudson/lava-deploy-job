@@ -16,7 +16,9 @@ run:
   steps:
     - "set -x"
     - "wget http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-arm64-disk1.img"
+    - "ls -l"
     - "qemu-img -p convert -O raw trusty-server-cloudimg-arm64-disk1.img trusty-server-cloudimg-arm64-disk1.raw.img"
+    - "ls -l"
     - "dd if=trusty-server-cloudimg-arm64-disk1.raw.img of=/dev/sda bs=1M"
     - "sync"
     - "echo 1 > /sys/class/block/sda/device/rescan"
