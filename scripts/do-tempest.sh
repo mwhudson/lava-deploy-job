@@ -14,7 +14,6 @@ git clone -b arm64-trusty git://github.com/mwhudson/testing-openstack
 cd testing-openstack
 ./setup.sh
 cd /opt/stack/tempest
-cp etc/logging.conf.sample etc/logging.conf
 mkdir /home/ubuntu/attachments
 if [ "$LAVA_RUN_TEMPEST" = "yes" ]; then
     sudo -u stack testr init

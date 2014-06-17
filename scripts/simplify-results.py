@@ -17,15 +17,30 @@ def clean_test_id(test_id):
 
 seen_tests = set()
 
+all_tests = set()
+tests_by_class = {}
+
+for l in open(sys.argv[2]):
+    test_id = clean_test_id(l.strip())
+    all_tests.add(test_id)
+    test_class_id, test_case_id = test_id.rsplit('.', 1)
+    tests_by_class.setdefault(test_class_id, []).append(test_id)
+
+
+SETUP_PREFIX = 'setUpClass--'
+RESULT_TMPL = "TEST@%s@ RESULT@%s@"
+
 for d in csv.DictReader(open(sys.argv[1])):
     test_id = clean_test_id(d['test'])
+    if test_id.startswith('setUpClass--') and d['status'] == 'skip':
+        test_class = test_id[len(SETUP_PREFIX):-1]
+        for test_id in tests_by_class[test_class]:
+            print RESULT_TMPL % (test_id, 'skip')
+            seen_tests.add(test_id)
     seen_tests.add(test_id)
     result = result_map.get(d.get('status', 'unknown'))
-    print "TEST@%s@ RESULT@%s@" % (test_id, result)
+    print RESULT_TMPL % (test_id, result)
 
-all_tests = set()
-for l in open(sys.argv[2]):
-    all_tests.add(clean_test_id(l.strip()))
 
 for test_id in all_tests - seen_tests:
-    print "TEST@%s@ RESULT@%s@" % (test_id, 'unknown')
+    print RESULT_TMPL % (test_id, 'unknown')
