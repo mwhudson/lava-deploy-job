@@ -15,13 +15,11 @@ metadata:
 run:
   steps:
     - "set -x"
-    - "cat /etc/resolv.conf"
     - "resolvconf -u"
-    - "cat /etc/resolv.conf"
-    - "wget --progress=dot -e dotbytes=10M http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-arm64-disk1.img"
-    - "qemu-img convert -O raw trusty-server-cloudimg-arm64-disk1.img trusty-server-cloudimg-arm64-disk1.raw.img"
-    - "dd if=trusty-server-cloudimg-arm64-disk1.raw.img of=/dev/sda bs=1M"
-    - "rm trusty-server-cloudimg-arm64-disk1.raw.img trusty-server-cloudimg-arm64-disk1.img"
+    - "wget --progress=dot -e dotbytes=10M -O cloud.qcow2 $LAVA_CLOUD_IMG_URL"
+    - "qemu-img convert -O raw cloud.qcow2 cloud.raw"
+    - "dd if=cloud.raw of=/dev/sda bs=1M"
+    - "rm cloud.*"
     - "sync"
     - "echo 1 > /sys/class/block/sda/device/rescan"
     - "mount /dev/sda1 /mnt"
@@ -47,3 +45,4 @@ params:
   LAVA_RUN_TEMPEST: yes
   LAVA_SLEEP_FOR_ACCESS: no
   LAVA_TESTS_TO_RUN: ''
+  LAVA_CLOUD_IMG_URL: 'http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-arm64-disk1.img'
