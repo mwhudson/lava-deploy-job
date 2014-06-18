@@ -18,7 +18,7 @@ mkdir /home/ubuntu/attachments
 if [ "$LAVA_RUN_TEMPEST" = "yes" ]; then
     sudo -u stack testr init
     sudo -u stack testr list-tests $LAVA_TESTS_TO_RUN | tail -n +6 > /home/ubuntu/attachments/all-tests.txt
-    sudo -u stack testr run --subunit --load-list=/home/ubuntu/attachments/all-tests.txt | tail -n +6 | tee results.subunit | subunit-2to1 | tools/colorizer.py
+    sudo -u stack testr run --parallel --subunit --load-list=/home/ubuntu/attachments/all-tests.txt | tail -n +6 | tee results.subunit | subunit-2to1 | tools/colorizer.py
     cat results.subunit | subunit2csv --no-passthrough > /home/ubuntu/attachments/results.csv
     cd /opt/stack/log
     tar -czf /home/ubuntu/attachments/devstack-logs.tgz .
