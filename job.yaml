@@ -12,6 +12,11 @@ actions:
       ramdisk: 'http://lava-leg02/~mwhudson/uInitrd-nfs'
       nfsrootfs: 'http://lava-leg02/~mwhudson/ubuntu-arm64-chroot.tar.bz2'
       target_type: ubuntu
+      login_prompt: 'login:'
+      username: ubuntu
+      password_prompt: Password
+      password: ubuntu
+      login_commands: ['sudo su -l']
 
   - &boot-nfs
     command: boot_linaro_image
@@ -30,12 +35,13 @@ actions:
     parameters:
       testdef_repos:
         - git-repo: http://github.com/mwhudson/lava-deploy-job
+          testdef: splat.yaml
           parameters:
             LAVA_CUSTOM_KERNEL_VERSION: ''
             LAVA_RUN_TEMPEST: 'yes'
             LAVA_SLEEP_FOR_ACCESS: 'no'
             LAVA_TESTS_TO_RUN: ''
-          testdef: splat.yaml
+            LAVA_CLOUD_IMG_URL: 'http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-arm64-disk1.img'
       timeout: 900
 
   - &deploy-sata
@@ -43,13 +49,17 @@ actions:
     parameters:
       dtb: http://images-internal/mustang/mustang.dtb_1.11
       kernel: http://images-internal/mustang/uImage_1.11
-      login_commands:
-        - 'sleep 60; sudo -s'
-      login_prompt: 'login:'
-      password: password
-      password_prompt: Password
       target_type: ubuntu
+      login_prompt: 'login:'
       username: ubuntu
+      password_prompt: Password
+      password: password
+      # The sleep here is pretty mysterious, but without it, on the
+      # *second* boot into the installed image, the call to sudo asks
+      # for a password (some kind of race with cloud init?)  I haven't
+      # bracketed to find the length of sleep that is required; 60
+      # works and 3 doesn't.
+      login_commands: ['sleep 60; sudo -s']
 
   - &boot-sata
     command: boot_linaro_image
