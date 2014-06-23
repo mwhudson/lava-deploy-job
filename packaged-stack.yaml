@@ -15,10 +15,11 @@ metadata:
 run:
   steps:
     - "resolvconf -u"
+    - "export LAVA_RUN_TEMPEST LAVA_SLEEP_FOR_ACCESS LAVA_TESTS_TO_RUN"
     - "./scripts/set-up-hosts-file.sh"
     - "./scripts/do-packaged-stack.sh"
 
 params:
-  LAVA_RUN_TEMPEST: yes
-  LAVA_SLEEP_FOR_ACCESS: no
+  LAVA_RUN_TEMPEST: 'yes'
+  LAVA_SLEEP_FOR_ACCESS: 'no'
   LAVA_TESTS_TO_RUN: ''

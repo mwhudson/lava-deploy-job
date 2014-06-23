@@ -1,10 +1,10 @@
 metadata:
-   name: deploy-trusty-cloudimg
+   name: deploy-cloudimg
    maintainer:
       - Michael Hudson-Doyle <michael.hudson@linaro.org>
    format: "Lava-Test-Shell Test Definition 1.0"
    version: 1.0
-   description: "Deploy a trusty cloud image to /dev/sda and prep it for running tempest."
+   description: "Deploy an Ubuntu cloud image to /dev/sda."
    os:
       - ubuntu
    devices:

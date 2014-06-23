@@ -45,10 +45,6 @@ actions:
         - git-repo: http://github.com/mwhudson/lava-deploy-job
           testdef: splat.yaml
           parameters:
-            LAVA_CUSTOM_KERNEL_VERSION: ''
-            LAVA_RUN_TEMPEST: 'yes'
-            LAVA_SLEEP_FOR_ACCESS: 'no'
-            LAVA_TESTS_TO_RUN: ''
             LAVA_CLOUD_IMG_URL: 'http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-arm64-disk1.img'
       timeout: 900
 
