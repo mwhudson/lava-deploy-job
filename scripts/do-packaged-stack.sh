@@ -2,10 +2,6 @@
 
 resolvconf -u
 
-export PATH=$PATH:/lava/bin
-ln -s /lava /lava-$(lava-self)
-/opt/lava-scripts/set-up-hosts-file.sh
-
 mkdir -p ~ubuntu/.ssh
 cp /opt/lava-scripts/id_rsa* ~ubuntu/.ssh
 cat ~ubuntu/.ssh/id_rsa.pub >> ~ubuntu/.ssh/authorized_keys

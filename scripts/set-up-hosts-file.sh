@@ -12,5 +12,5 @@ for line in sorted(sys.stdin):
     testname = "%s%02d"%(role, rolecounts[role])
     print hostname + "\t" + testname
 ' | while read host testname; do
-    echo $(lava-network query $host ipv4) $testname $host  >> /etc/hosts
+    echo $(lava-network query $host ipv4) $testname $host  >> /mnt/etc/hosts
 done
