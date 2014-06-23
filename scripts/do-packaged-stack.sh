@@ -3,7 +3,7 @@
 resolvconf -u
 
 export PATH=$PATH:/lava/bin
-
+ln -s /lava /lava-$(lava-self)
 /opt/lava-scripts/set-up-hosts-file.sh
 
 mkdir -p ~ubuntu/.ssh
@@ -18,7 +18,7 @@ ssh ubuntu@compute01 true
 ssh ubuntu@controller01 true
 
 if [ `lava-role` = "controller" ]; then
-    apt-get install juju-core
+    apt-get install -y juju-core
     sudo -u ubuntu PATH=$PATH /opt/lava-scripts/do-packaged-stack-controller.sh
 fi
 
