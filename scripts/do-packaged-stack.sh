@@ -21,4 +21,6 @@ if [ `lava-role` = "controller" ]; then
     sudo -u ubuntu PATH=$PATH ./scripts/do-packaged-stack-controller.sh
 fi
 
-sleep 3600
+if [ "$LAVA_SLEEP_FOR_ACCESS" = "yes" ]; then
+    sleep 3600
+fi

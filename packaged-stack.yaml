@@ -14,6 +14,7 @@ metadata:
 
 run:
   steps:
+    - "resolvconf -u"
     - "./scripts/set-up-hosts-file.sh"
     - "./scripts/do-packaged-stack.sh"
 
