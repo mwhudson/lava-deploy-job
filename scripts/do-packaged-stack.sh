@@ -18,3 +18,8 @@ chmod 0700 ~ubuntu/.ssh
 
 ssh ubuntu@compute01 true
 ssh ubuntu@controller01 true
+
+if [ `lava-role` = "controller" ]; then
+    apt-get install juju-core
+    sudo -u ubuntu PATH=$PATH /opt/lava-scripts/do-packaged-stack-controller.sh
+fi
