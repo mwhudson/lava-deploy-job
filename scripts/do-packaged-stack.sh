@@ -2,9 +2,7 @@
 
 resolvconf -u
 
-ldir="/lava-*/"
-
-export $PATH=$PATH:$ldir/bin
+export $PATH=$PATH:/lava/bin
 
 /opt/lava-scripts/set-up-hosts-file.sh
 

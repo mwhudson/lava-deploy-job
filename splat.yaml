@@ -35,6 +35,8 @@ run:
     - "set | grep ^LAVA | sed -e 's%^%export %' > /mnt/etc/lavavars"
     - "mkdir -p /mnt/var/lib/cloud/seed/nocloud-net"
     - "cp -a cloud-seed/* /mnt/var/lib/cloud/seed/nocloud-net/"
+    - "mkdir /mnt/lava"
+    - "cp -a /lava-*/* /mnt/lava/"
     - "sync"
     - "umount /mnt || true"
     - "sleep 5"
