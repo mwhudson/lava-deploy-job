@@ -2,6 +2,10 @@
 
 resolvconf -u
 
+ldir="/lava-*/"
+
+export $PATH=$PATH:$ldir/bin
+
 /opt/lava-scripts/set-up-hosts-file.sh
 
 mkdir -p ~ubuntu/.ssh
