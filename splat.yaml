@@ -37,7 +37,6 @@ run:
     - "cp -a cloud-seed/* /mnt/var/lib/cloud/seed/nocloud-net/"
     - "mkdir /mnt/lava"
     - "cp -a /lava-*/* /mnt/lava/"
-    - "./scripts/set-up-hosts-file.sh"
     - "sync"
     - "umount /mnt || true"
     - "sleep 5"

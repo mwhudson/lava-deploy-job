@@ -55,6 +55,7 @@ actions:
   - &deploy-sata
     command: deploy_linaro_kernel
     parameters:
+      # This dtb and kernel is actually ignored.
       dtb: http://images-internal/mustang/mustang.dtb_1.11
       kernel: http://images-internal/mustang/uImage_1.11
       target_type: ubuntu
@@ -78,21 +79,16 @@ actions:
         - 'ext4load scsi 0 ${script_addr_r} boot/boot.scr'
         - 'source ${script_addr_r}'
 
-  - command: lava_command_run
-    parameters:
-      commands:
-        - '/opt/lava-scripts/do-packaged-stack.sh'
-      timeout: 24000
-
-  - *deploy-nfs
-  - *boot-nfs
-
   - command: lava_test_shell
     parameters:
       testdef_repos:
-      - git-repo: 'http://github.com/mwhudson/lava-deploy-job'
-        testdef: process-results.yaml
-      timeout: 1800
+        - git-repo: http://github.com/mwhudson/lava-deploy-job
+          testdef: packaged-stack.yaml
+          parameters:
+            LAVA_RUN_TEMPEST: 'yes'
+            LAVA_SLEEP_FOR_ACCESS: 'no'
+            LAVA_TESTS_TO_RUN: ''
+      timeout: 24000
 
   - command: submit_results
     parameters:

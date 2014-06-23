@@ -1,0 +1,23 @@
+metadata:
+   name: packaged-stack
+   maintainer:
+      - Michael Hudson-Doyle <michael.hudson@linaro.org>
+   format: "Lava-Test-Shell Test Definition 1.0"
+   version: 1.0
+   description: ""
+   os:
+      - ubuntu
+   devices:
+      - mustang
+   environment:
+      - lava-test-shell
+
+run:
+  steps:
+    - "./scripts/set-up-hosts-file.sh"
+    - "./scripts/do-packaged-stack.sh"
+
+params:
+  LAVA_RUN_TEMPEST: yes
+  LAVA_SLEEP_FOR_ACCESS: no
+  LAVA_TESTS_TO_RUN: ''
