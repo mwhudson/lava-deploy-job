@@ -6,5 +6,3 @@ juju bootstrap
 juju add-machine ssh:controller01
 juju add-machine ssh:compute01
 
-sleep 3600
-

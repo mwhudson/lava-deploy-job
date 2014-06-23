@@ -21,3 +21,5 @@ if [ `lava-role` = "controller" ]; then
     apt-get install juju-core
     sudo -u ubuntu PATH=$PATH /opt/lava-scripts/do-packaged-stack-controller.sh
 fi
+
+sleep 3600
